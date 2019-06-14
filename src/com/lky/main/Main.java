@@ -6,6 +6,8 @@ package com.lky.main;
  **/
 public class Main {
     public static void main(String[] args) {
-        System.out.println("测试github的项目结构是否同步");
+
+
+
     }
 }
