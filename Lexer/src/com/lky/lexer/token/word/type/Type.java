@@ -11,7 +11,7 @@ public class Type extends Word {
 
     public int width = 0;//用于存储时分配
 
-    public Type(String s, Tag tag, int w) {
+    public Type(String s, int tag, int w) {
         super(s, tag);
         width = w;
     }

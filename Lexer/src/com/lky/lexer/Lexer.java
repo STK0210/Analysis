@@ -1,6 +1,8 @@
 package com.lky.lexer;
 
 import com.lky.lexer.tag.Tag;
+import com.lky.lexer.token.Num;
+import com.lky.lexer.token.Real;
 import com.lky.lexer.token.Token;
 import com.lky.lexer.token.word.Word;
 import com.lky.lexer.token.word.type.Type;
@@ -57,23 +59,79 @@ public class Lexer {
                 continue;
             else if (peek == '\n')
                 line++;
-            else break;
+            else
+                break;
         }
         switch (peek) {
             case '&':
                 if (readch('&'))
                     return Word.and;
                 else
-                    return new Token(Tag.AND);
+                    return new Token('&');
             case '|':
                 if (readch('|'))
                     return Word.or;
                 else
-                    return new Token(Tag.OR);
+                    return new Token('|');
+            case '=':
+                if (readch('='))
+                    return Word.eq;
+                else
+                    return new Token('=');
+            case '!':
+                if (readch('='))
+                    return Word.ne;
+                else
+                    return new Token('!');
+            case '<':
+                if (readch('='))
+                    return Word.le;
+                else
+                    return new Token('<');
+            case '>':
+                if (readch('='))
+                    return Word.ge;
+                else
+                    return new Token('>');
         }
 
+        if (Character.isDigit(peek)) {
+            int v = 0;
+            do {
+                v = 10 * v + Character.digit(peek, 10);
+                readch();
+            } while (Character.isDigit(peek));
+            if (peek != '.')
+                return new Num(v);
+            float x = v;
+            float d = 10;
+            for (; ; ) {
+                readch();
+                if (!Character.isDigit(peek))
+                    break;
+                x = x + Character.digit(peek, 10) / d;
+                d = d * 10;
+            }
+            return new Real(x);
+        }
 
-        return null;
+        if (Character.isLetter(peek)) {
+            StringBuffer buffer = new StringBuffer();
+            do {
+                buffer.append(peek);
+                readch();
+            } while (Character.isLetterOrDigit(peek));
+            String str = buffer.toString();
+            Word word = (Word) words.get(str);
+            if (word != null)
+                return word;
+            word = new Word(str, Tag.ID);
+            words.put(str, word);
+            return word;
+        }
+        Token tok = new Token(peek);
+        peek = ' ';
+        return tok;
     }
 
 

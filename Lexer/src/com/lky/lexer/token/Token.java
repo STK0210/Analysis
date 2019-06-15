@@ -1,7 +1,5 @@
 package com.lky.lexer.token;
 
-import com.lky.lexer.tag.Tag;
-
 /**
  * @auther likeyu
  * @create 2019-06-14-23:47
@@ -9,10 +7,10 @@ import com.lky.lexer.tag.Tag;
 
 public class Token {
 
-    public final Tag tag;
+    public final int tag;
 
 
-    public Token(Tag tag) {
+    public Token(int tag) {
         this.tag = tag;
     }
 

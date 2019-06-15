@@ -1,77 +1,14 @@
 package com.lky.lexer.tag;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 /**
  * @auther likeyu
  * @create 2019-06-14-22:30
  **/
 
-public enum Tag {
+public class Tag {
 
-    //头部(程序头部、过程头部)
-    PROGRAM,
-    PROCEDURE,
-
-    //程序体结构
-    BEGIN,
-    END,
-
-    //声明
-    VAR,
-
-    //类型
-    TYPE,
-
-    NUM,
-
-    BASIC,
-    INTC,
-    REAL,
-    CHAR,
-    ARRAY, OF, INDEX,
-
-    //符号
-    SEMICOLON,//  ;
-    COMMA,//  ,
-    UNDERSCORE,//  _
-    ADD, SUB, MUL, DIV,//  +  -  *  ÷
-    AND, OR,//  &  |
-    PAIRAND, PAIROR, EQ, NE, LT, GT, LE, GE,//  &&  ||  ==  !=  <  >  <=  >=
-    LEFT_BRACES, RIGHT_BRACES,//  {  }
-    LEFT_SQUAREBRACKET, RIGHT_SQUAREBRACKET,//  [  ]
-    LEFT_ANGLEBRACKET, RIGHT_ANGLEBRACKET,//  <  >
-    LEFT_ANGLEQUOTES, RIGHT_ANGLEQUOTES,//  《  》
-    LEFT_ROUNDBRACKET, RIGHT_ROUNDBRACKET,//  (  )
-    DOT, EOF, SPACE,//  .  文件结束符  空格
-    COLON_EQUAL, APOSTROPHE, TWO_DOT,//  :=  ...  ..
-
-    //正确错误temp
-    TRUE,
-    FALSE,
-    TEMP,
-
-    //记录
-    RECORD,//以END结尾
-
-    //条件语句
-    IF,
-    THEN,
-    ELSE,
-    FI,
-
-    //循环语句
-    WHILE,
-    DO,
-    ENDWH,
-    BREAK,
-
-    //输入输出
-    READ,
-    WRITE,
-
-    //返回
-    RETURN,
-
-    //拷贝的SNL词法表(未分类)
-    UNSIGNEDNUMBER,
-    IDENTIFIERS;
+    public final static int
+            PROGRAM = 256, PROCEDURE = 257, ID = 258, RETURN = 259, BEGIN = 260, RECORD = 261, END = 262, TYPE = 263, VAR = 264, INTC = 265, INTEGER = 266, REAL = 267, CHAR = 268, ARRAY = 269, OF = 270, INDEX = 271, READ = 272, WRITE = 273, AND = 274, OR = 275, EQ = 276, NE = 277, LE = 278, GE = 279, IF = 280, THEN = 281, ELSE = 282, FI = 283, WHILE = 284, DO = 285, ENDWH = 286, BREAK = 287, BASIC = 288, NUM = 289, TRUE = 290, FALSE = 291, TEMP = 292;
 }
