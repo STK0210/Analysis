@@ -1,12 +1,14 @@
 package com.lky.lexer.tag;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 /**
  * @auther likeyu
  * @create 2019-06-14-22:30
  **/
 
+/**
+ * 定义各个词法单元所对应的常量
+ * 具体分类查看com.lky.lexer.tag.TagUtils的备注
+ */
 public class Tag {
 
     public final static int

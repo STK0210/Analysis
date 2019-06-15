@@ -9,7 +9,6 @@ public class Token {
 
     public final int tag;
 
-
     public Token(int tag) {
         this.tag = tag;
     }
@@ -18,6 +17,7 @@ public class Token {
     public String toString() {
         return "Token{" +
                 "tag=" + tag +
+                " , TAG='" + (char) tag + "'" +
                 '}';
     }
 }

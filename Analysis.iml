@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Lexer" exported="" />
+    <orderEntry type="module" module-name="Parser" exported="" />
   </component>
 </module>

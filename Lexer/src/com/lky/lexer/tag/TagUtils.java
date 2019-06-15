@@ -16,10 +16,10 @@ public class TagUtils {
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
 
         String[] tag = {
-                "PROGRAM",
-                "PROCEDURE",
-                "ID",
-                "RETURN",
+                "PROGRAM",//程序头
+                "PROCEDURE",//过程头
+                "ID",//名字
+                "RETURN",//返回
 
                 "BEGIN",
                 "RECORD",
@@ -27,9 +27,9 @@ public class TagUtils {
 
                 "TYPE",
                 "VAR",
-                "INTC",
-                "INTEGER",
-                "REAL",
+                "INTC",//无符号整数
+                "INTEGER",//整数
+                "REAL",//实数
                 "CHAR",
                 "ARRAY",
                 "OF",
@@ -38,12 +38,12 @@ public class TagUtils {
                 "READ",
                 "WRITE",
 
-                "AND",
-                "OR",
-                "EQ",
-                "NE",
-                "LE",
-                "GE",
+                "AND",//&&
+                "OR",//||
+                "EQ",//==
+                "NE",//!=
+                "LE",//<=
+                "GE",//>=
 
                 "IF",
                 "THEN",

@@ -21,11 +21,14 @@ public class Lexer {
     char peek = ' ';
     Hashtable words = new Hashtable();
 
+    char[] in;
+    int index = 0;
+
     void reserve(Word w) {
         words.put(w.lexeme, w);
     }
 
-    public Lexer() {
+    public Lexer(String sourses) {
 
         reserve(new Word("if", Tag.IF));
         reserve(new Word("else", Tag.ELSE));
@@ -39,12 +42,29 @@ public class Lexer {
         reserve(Type.Bool);
         reserve(Type.Float);
 
+        in = sourses.toCharArray();
     }
 
+    /**
+     * 读取一个字符
+     *
+     * @throws IOException
+     */
     void readch() throws IOException {
-        peek = (char) System.in.read();
+        if (index < in.length) {
+            peek = in[index++];
+        } else {
+            peek = (char) -1;
+        }
     }
 
+    /**
+     * 读取下一个字符判断是否是指定的字符c
+     *
+     * @param c
+     * @return 下一个字符是指定字符或不是指定字符
+     * @throws IOException
+     */
     boolean readch(char c) throws IOException {
         readch();
         if (peek != c)
@@ -54,6 +74,7 @@ public class Lexer {
     }
 
     public Token scan() throws IOException {
+        //跳过所有的空白字符
         for (; ; readch()) {
             if (peek == ' ' || peek == '\t')
                 continue;
@@ -62,6 +83,7 @@ public class Lexer {
             else
                 break;
         }
+        //识别复合的词法单元
         switch (peek) {
             case '&':
                 if (readch('&'))
@@ -94,7 +116,7 @@ public class Lexer {
                 else
                     return new Token('>');
         }
-
+        //识别数字
         if (Character.isDigit(peek)) {
             int v = 0;
             do {
@@ -114,7 +136,7 @@ public class Lexer {
             }
             return new Real(x);
         }
-
+        //识别字符串
         if (Character.isLetter(peek)) {
             StringBuffer buffer = new StringBuffer();
             do {
@@ -123,16 +145,15 @@ public class Lexer {
             } while (Character.isLetterOrDigit(peek));
             String str = buffer.toString();
             Word word = (Word) words.get(str);
-            if (word != null)
+            if (word != null)//判断是否为关键字
                 return word;
             word = new Word(str, Tag.ID);
             words.put(str, word);
             return word;
         }
+        //最后未识别的作为一个词法单元返回
         Token tok = new Token(peek);
         peek = ' ';
         return tok;
     }
-
-
 }
