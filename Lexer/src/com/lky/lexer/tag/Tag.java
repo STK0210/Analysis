@@ -1,7 +1,5 @@
 package com.lky.lexer.tag;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 /**
  * @auther likeyu
  * @create 2019-06-14-22:30
@@ -24,16 +22,20 @@ public enum Tag {
     TYPE,
 
     NUM,
+
+    BASIC,
+    INTC,
     REAL,
     CHAR,
-    ARRAY, OF, INTC,
+    ARRAY, OF, INDEX,
 
     //符号
     SEMICOLON,//  ;
     COMMA,//  ,
     UNDERSCORE,//  _
     ADD, SUB, MUL, DIV,//  +  -  *  ÷
-    EQ, NE, LT, GT, LE, GE,//  =  !=  <  >  <=  >=
+    AND, OR,//  &  |
+    PAIRAND, PAIROR, EQ, NE, LT, GT, LE, GE,//  &&  ||  ==  !=  <  >  <=  >=
     LEFT_BRACES, RIGHT_BRACES,//  {  }
     LEFT_SQUAREBRACKET, RIGHT_SQUAREBRACKET,//  [  ]
     LEFT_ANGLEBRACKET, RIGHT_ANGLEBRACKET,//  <  >
@@ -41,6 +43,11 @@ public enum Tag {
     LEFT_ROUNDBRACKET, RIGHT_ROUNDBRACKET,//  (  )
     DOT, EOF, SPACE,//  .  文件结束符  空格
     COLON_EQUAL, APOSTROPHE, TWO_DOT,//  :=  ...  ..
+
+    //正确错误temp
+    TRUE,
+    FALSE,
+    TEMP,
 
     //记录
     RECORD,//以END结尾
@@ -55,6 +62,7 @@ public enum Tag {
     WHILE,
     DO,
     ENDWH,
+    BREAK,
 
     //输入输出
     READ,
