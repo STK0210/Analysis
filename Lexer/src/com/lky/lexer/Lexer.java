@@ -8,7 +8,10 @@ import com.lky.lexer.token.word.Word;
 import com.lky.lexer.token.word.type.Type;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @auther likeyu
@@ -35,8 +38,10 @@ public class Lexer {
         reserve(new Word("while", Tag.WHILE));
         reserve(new Word("do", Tag.DO));
         reserve(new Word("break", Tag.BREAK));
+
         reserve(Word.True);
         reserve(Word.False);
+
         reserve(Type.Int);
         reserve(Type.Char);
         reserve(Type.Bool);
@@ -155,5 +160,16 @@ public class Lexer {
         Token tok = new Token(peek);
         peek = ' ';
         return tok;
+    }
+
+    public List<Token> getTokens() throws IOException {
+
+        List<Token> list = new LinkedList<>();
+        Token token = scan();
+        while (token.tag != 65535) {
+            list.add(token);
+            token = scan();
+        }
+        return list;
     }
 }

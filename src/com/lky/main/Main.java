@@ -15,7 +15,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        List<Token> list = new LinkedList<>();
         String sourses = "program p\n" +
                 "type t1 = integer;\n" +
                 "var integer v1,v2;\n" +
@@ -35,13 +34,7 @@ public class Main {
                 "q(v1)\n" +
                 "end.";
         Lexer lex = new Lexer(sourses);
-        Token token = lex.scan();
-        while (token.tag != 65535) {
-            list.add(token);
-            token = lex.scan();
-        }
-        for (Token tok : list) {
-            System.out.println(tok.toString());
-        }
+        List<Token> list = lex.getTokens();
+        System.out.println(list);
     }
 }
