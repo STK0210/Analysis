@@ -1,9 +1,9 @@
 package com.lky.parser;
 
-import com.lky.lexer.token.Token;
+import com.lky.lexer.Lexer;
+import com.lky.token.Token;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @auther likeyu
@@ -12,22 +12,45 @@ import java.util.List;
 
 public class Parser {
 
-    private List<Token> list;
+    private Lexer lex;
     private Token look;
 
-    private int index = 0;
-
-    public Parser(List<Token> sourse) throws IOException {
-        list = sourse;
+    public Parser(Lexer lex) throws IOException {
+        this.lex = lex;
         move();
     }
 
-    void move() {
-        look = list.get(index++);
+    void move() throws IOException {
+        look = lex.scan();
     }
 
-    void error(String str) {
+    void error(String err) {
+        throw new Error("near line " + lex.line);
+    }
 
+    void match(int tag) throws IOException {
+        if (look.tag == tag)
+            move();
+        else
+            error("syntax error");
+    }
+
+    public void Program() throws IOException {//Program ::= ProgramHead DeclarePart ProgramBody .
+        ProgramHead();
+        DeclarePart();
+        ProgramBody();
+        match('.');
+    }
+
+    private void ProgramHead() {
+
+    }
+
+    private void DeclarePart() {
+
+    }
+
+    private void ProgramBody() {
 
     }
 

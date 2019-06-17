@@ -1,14 +1,13 @@
 package com.lky.lexer;
 
-import com.lky.lexer.tag.Tag;
-import com.lky.lexer.token.Num;
-import com.lky.lexer.token.Real;
-import com.lky.lexer.token.Token;
-import com.lky.lexer.token.word.Word;
-import com.lky.lexer.token.word.type.Type;
+import com.lky.tag.Tag;
+import com.lky.token.Num;
+import com.lky.token.Real;
+import com.lky.token.Token;
+import com.lky.token.word.Word;
+import com.lky.symbols.Type;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;

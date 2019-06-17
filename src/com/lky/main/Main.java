@@ -1,10 +1,9 @@
 package com.lky.main;
 
 import com.lky.lexer.Lexer;
-import com.lky.lexer.token.Token;
+import com.lky.token.Token;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

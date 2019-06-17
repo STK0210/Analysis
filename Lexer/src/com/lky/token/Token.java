@@ -1,4 +1,4 @@
-package com.lky.lexer.token;
+package com.lky.token;
 
 /**
  * @auther likeyu

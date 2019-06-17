@@ -1,7 +1,7 @@
-package com.lky.lexer.token.word.type;
+package com.lky.symbols;
 
-import com.lky.lexer.tag.Tag;
-import com.lky.lexer.token.word.Word;
+import com.lky.tag.Tag;
+import com.lky.token.word.Word;
 
 /**
  * @auther likeyu
@@ -23,7 +23,12 @@ public class Type extends Word {
             Char = new Type("char", Tag.BASIC, 1),
             Bool = new Type("bool", Tag.BASIC, 1);
 
-    //与boolean类型进行转换
+    /**
+     * 与boolean类型进行转换
+     *
+     * @param tp
+     * @return true or false
+     */
     public static boolean numeric(Type tp) {
         if (tp == Type.Char || tp == Type.Int || tp == Type.Float)
             return true;
@@ -31,7 +36,13 @@ public class Type extends Word {
             return false;
     }
 
-    //数字之间运算时应用于两种类型的max值
+    /**
+     * 数字之间运算时，应用两种类型的max值
+     *
+     * @param tp1
+     * @param tp2
+     * @return
+     */
     public static Type max(Type tp1, Type tp2) {
         if (!numeric(tp1) || !numeric(tp2))
             return null;

@@ -1,6 +1,6 @@
-package com.lky.lexer.token;
+package com.lky.token;
 
-import com.lky.lexer.tag.Tag;
+import com.lky.tag.Tag;
 
 /**
  * @auther likeyu
