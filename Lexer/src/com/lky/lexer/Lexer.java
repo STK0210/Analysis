@@ -89,6 +89,11 @@ public class Lexer {
         }
         //识别复合的词法单元
         switch (peek) {
+            case ':':
+                if (readch('='))
+                    return Word.assign;
+                else
+                    return new Token(':');
             case '&':
                 if (readch('&'))
                     return Word.and;

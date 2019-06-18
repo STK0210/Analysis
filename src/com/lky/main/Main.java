@@ -34,6 +34,8 @@ public class Main {
                 "end.";
         Lexer lex = new Lexer(sourses);
         List<Token> list = lex.getTokens();
-        System.out.println(list);
+        for (Token token : list) {
+            System.out.println(token);
+        }
     }
 }

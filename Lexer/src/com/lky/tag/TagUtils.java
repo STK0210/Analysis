@@ -38,6 +38,7 @@ public class TagUtils {
                 "READ",
                 "WRITE",
 
+                "ASSIGN",//:=
                 "AND",//&&
                 "OR",//||
                 "EQ",//==

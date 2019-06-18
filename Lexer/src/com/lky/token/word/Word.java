@@ -27,6 +27,7 @@ public class Word extends Token {
     }
 
     public static final Word
+            assign = new Word(":=", Tag.ASSIGN),
             and = new Word("&&", Tag.AND),
             or = new Word("||", Tag.OR),
             eq = new Word("==", Tag.EQ),
