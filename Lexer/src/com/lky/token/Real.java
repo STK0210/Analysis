@@ -8,17 +8,22 @@ import com.lky.tag.Tag;
  **/
 
 public class Real extends Token {
+
+    public final int tag;
     public final float value;
 
     public Real(float v) {
-        super(Tag.REAL);
-        value = v;
+        super(Tag.REAL, Float.toString(v));
+        this.tag = Tag.REAL;
+        this.value = v;
     }
 
     @Override
     public String toString() {
         return "Real{" +
-                "value=" + value +
+                "tag=" + tag +
+                ", value=" + value +
                 '}';
     }
+
 }

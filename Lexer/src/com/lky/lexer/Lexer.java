@@ -1,11 +1,10 @@
 package com.lky.lexer;
 
 import com.lky.tag.Tag;
-import com.lky.token.Num;
+import com.lky.token.Integer;
 import com.lky.token.Real;
 import com.lky.token.Token;
 import com.lky.token.word.Word;
-import com.lky.symbols.Type;
 
 import java.io.IOException;
 import java.util.Hashtable;
@@ -32,19 +31,32 @@ public class Lexer {
 
     public Lexer(String sourses) {
 
+        reserve(new Word("program", Tag.PROGRAM));
+        reserve(new Word("procedure", Tag.PROCEDURE));
+        reserve(new Word("return", Tag.RETURN));
+
+        reserve(new Word("begin", Tag.BEGIN));
+        reserve(new Word("record", Tag.RECORD));
+        reserve(new Word("end", Tag.END));
+
+        reserve(new Word("type", Tag.TYPE));
+        reserve(new Word("var", Tag.VAR));
+
+        reserve(new Word("array", Tag.ARRAY));
+        reserve(new Word("of", Tag.OF));
+
+        reserve(new Word("INTC", Tag.INTC));
+        reserve(new Word("integer", Tag.INTEGER));
+
         reserve(new Word("if", Tag.IF));
+        reserve(new Word("then", Tag.THEN));
         reserve(new Word("else", Tag.ELSE));
+        reserve(new Word("fi", Tag.FI));
+
         reserve(new Word("while", Tag.WHILE));
         reserve(new Word("do", Tag.DO));
+        reserve(new Word("endwh", Tag.ENDWH));
         reserve(new Word("break", Tag.BREAK));
-
-        reserve(Word.True);
-        reserve(Word.False);
-
-        reserve(Type.Int);
-        reserve(Type.Char);
-        reserve(Type.Bool);
-        reserve(Type.Float);
 
         in = sourses.toCharArray();
     }
@@ -93,37 +105,42 @@ public class Lexer {
                 if (readch('='))
                     return Word.assign;
                 else
-                    return new Token(':');
+                    return new Token(':', ":");
+            case '.':
+                if (readch('.'))
+                    return Word.index;
+                else
+                    return new Token('.', ".");
             case '&':
                 if (readch('&'))
                     return Word.and;
                 else
-                    return new Token('&');
+                    return new Token('&', "&");
             case '|':
                 if (readch('|'))
                     return Word.or;
                 else
-                    return new Token('|');
+                    return new Token('|', "|");
             case '=':
                 if (readch('='))
                     return Word.eq;
                 else
-                    return new Token('=');
+                    return new Token('=', "=");
             case '!':
                 if (readch('='))
                     return Word.ne;
                 else
-                    return new Token('!');
+                    return new Token('!', "!");
             case '<':
                 if (readch('='))
                     return Word.le;
                 else
-                    return new Token('<');
+                    return new Token('<', "<");
             case '>':
                 if (readch('='))
                     return Word.ge;
                 else
-                    return new Token('>');
+                    return new Token('>', ">");
         }
         //识别数字
         if (Character.isDigit(peek)) {
@@ -133,7 +150,7 @@ public class Lexer {
                 readch();
             } while (Character.isDigit(peek));
             if (peek != '.')
-                return new Num(v);
+                return new Integer(v);
             float x = v;
             float d = 10;
             for (; ; ) {
@@ -160,8 +177,8 @@ public class Lexer {
             words.put(str, word);
             return word;
         }
-        //最后未识别的作为一个词法单元返回
-        Token tok = new Token(peek);
+        //最后未识别的单字作为一个词法单元返回(ASCII)
+        Token tok = new Token(peek, Character.toString(peek));
         peek = ' ';
         return tok;
     }

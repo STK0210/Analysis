@@ -1,10 +1,9 @@
 package com.lky.main;
 
 import com.lky.lexer.Lexer;
-import com.lky.token.Token;
+import com.lky.parser.Parser;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @auther likeyu
@@ -33,9 +32,8 @@ public class Main {
                 "q(v1)\n" +
                 "end.";
         Lexer lex = new Lexer(sourses);
-        List<Token> list = lex.getTokens();
-        for (Token token : list) {
-            System.out.println(token);
-        }
+        Parser parser = new Parser(lex);
+        parser.Program();
+        System.out.println(parser.root.list);
     }
 }
