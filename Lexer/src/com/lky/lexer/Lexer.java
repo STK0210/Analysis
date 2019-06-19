@@ -149,18 +149,17 @@ public class Lexer {
                 v = 10 * v + Character.digit(peek, 10);
                 readch();
             } while (Character.isDigit(peek));
-            if (peek != '.')
-                return new Integer(v);
-            float x = v;
-            float d = 10;
-            for (; ; ) {
-                readch();
-                if (!Character.isDigit(peek))
-                    break;
-                x = x + Character.digit(peek, 10) / d;
-                d = d * 10;
-            }
-            return new Real(x);
+            return new Integer(v);
+//            float x = v;
+//            float d = 10;
+//            for (; ; ) {
+//                readch();
+//                if (!Character.isDigit(peek))
+//                    break;
+//                x = x + Character.digit(peek, 10) / d;
+//                d = d * 10;
+//            }
+//            return new Real(x);
         }
         //识别字符串
         if (Character.isLetter(peek)) {

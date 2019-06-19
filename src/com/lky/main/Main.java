@@ -1,7 +1,9 @@
 package com.lky.main;
 
+import com.lky.UI.PrintTree;
 import com.lky.lexer.Lexer;
 import com.lky.parser.Parser;
+import com.lky.token.Token;
 
 import java.io.IOException;
 
@@ -9,6 +11,7 @@ import java.io.IOException;
  * @auther likeyu
  * @create 2019-06-14-19:58
  **/
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -31,9 +34,54 @@ public class Main {
                 "fi;\n" +
                 "q(v1)\n" +
                 "end.";
-        Lexer lex = new Lexer(sourses);
+
+        String sourses2 = "program  bubble\n" +
+                "var  integer  i,j,num;\n" +
+                "     array [1..20] of integer  a;\n" +
+                "procedure  q(integer num);\n" +
+                "var  integer i,j,k;\n" +
+                "     integer t;\n" +
+                "begin\n" +
+                "  i:=1;\n" +
+                "   while i < num do\n" +
+                "     j:=num-i+1;\n" +
+                "     k:=1;\n" +
+                "     while k<j  do\n" +
+                "    \tif a[k+1] < a[k]  \n" +
+                "then   \n" +
+                "\tt:=a[k];\n" +
+                "\t\ta[k]:=a[k+1];\n" +
+                "\t\ta[k+1]:=t\n" +
+                "         else  temp:=0\n" +
+                "         fi;   \n" +
+                "     k:=k+1\n" +
+                "     endwh;\n" +
+                "  i:=i+1\n" +
+                "  endwh\n" +
+                "end\n" +
+                "\n" +
+                "begin\n" +
+                "   read(num);\n" +
+                "   i:=1;\n" +
+                "   while i<(num+1)  do\n" +
+                "     read(j);\n" +
+                "     a[i]:=j;\n" +
+                "     i:=i+1\n" +
+                "   endwh;\n" +
+                "   q(num);\n" +
+                "   i:=1;\n" +
+                "   while  i<(num+1) do \n" +
+                "       write(a[i]);\n" +
+                "       i:=i+1\n" +
+                "   endwh\n" +
+                "end.";
+
+        Lexer lex = new Lexer(sourses2);
         Parser parser = new Parser(lex);
         parser.Program();
-        System.out.println(parser.root.list);
+        //PrintTree.test(parser.root);
+        //System.out.println(parser.root.NodeName);
+        //PrintTree.displayTree(parser.root, 1);
+        PrintTree.Pri(parser.root);
     }
 }

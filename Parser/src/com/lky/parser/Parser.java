@@ -41,8 +41,9 @@ public class Parser {
 
     Node match(int tag) {
         if (look.tag == tag) {
+            String nodeName = look.lexeme;
             move();
-            return new Node(look.lexeme);
+            return new Node(nodeName);
         } else {
             error("syntax error");
             return null;
@@ -102,6 +103,7 @@ public class Parser {
     //</editor-fold>
 
     //<editor-fold desc="类型">
+
     private Node TypeDef() {
         if (look.tag == Tag.INTEGER || look.tag == Tag.CHAR) {
             return new Node("TypeDef", BaseType());

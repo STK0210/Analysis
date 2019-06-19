@@ -16,7 +16,7 @@ public class Node {
 
     public final List<Node> list = new LinkedList<>();
 
-    int lexline = 0;//行号
+    private int lexline = 0;//行号
 
     public Node(String nodeName, Node... nodes) {
         NodeName = nodeName;
