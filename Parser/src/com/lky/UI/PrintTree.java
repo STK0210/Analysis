@@ -15,45 +15,123 @@ public class PrintTree {
 
     public static Map<Integer, Integer> levelMap = new HashMap<Integer, Integer>();
 
-    public static void Pri(Node root) {
+
+    //基础默认版，方便更改
+//    public static void Pri(Node root) {
+////        if (root == null)
+////            return;
+////        System.out.print(root.NodeName + "--");
+////        if (root.list.size() > 0) {
+////            Print(root.list.get(0), "|  ");
+////        }
+////        if (root.list.size() > 1) {
+////            for (int i = 1; i < root.list.size(); i++) {
+////                Print(root.list.get(i), "\\--");
+////            }
+////        }
+//
+//
+//        Print(root, "", 1);
+//    }
+//
+//    static void Print(Node node, String indent, int level) {
+////        if (node.list.size() == 0) {
+////            System.out.print(node.NodeName);
+////            System.out.println();
+////            return;
+////        }
+//        if (node.list.size() == 0) {
+//            System.out.print(indent + node.NodeName + "层数：" + level + "\n");
+//            return;
+//        }
+//        System.out.print(indent + node.NodeName + "-->");
+//        if (node.list.size() > 0) {
+//            for (int i = 0; i < node.list.size(); i++) {
+//                if (i == 0)
+//                    Print(node.list.get(i), indent, level++);
+//                else {
+//                    if (node.list.get(i).list.size() == 0) {
+//                        Print(node.list.get(i), "\\--" + indent, level++);
+//                    } else {
+//                        Print(node.list.get(i), indent, level++);
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
+
+
+    //瑕疵版，且算法不更新不可修复
+//    public static void Pri(Node root) {
 //        if (root == null)
 //            return;
-//        System.out.print(root.NodeName);
 //        if (root.list.size() > 0) {
-//            Print(root.list.get(0), "");
+//            Print(root.list.get(0), true, "", 1);
 //        }
+//        System.out.println(root.NodeName);
 //        if (root.list.size() > 1) {
 //            for (int i = 1; i < root.list.size(); i++) {
-//                Print(root.list.get(i), "        |");
+//                Print(root.list.get(i), false, "", 1);
 //            }
 //        }
-        Print(root, "");
-    }
-
-    static void Print(Node node, String indent) {
-//        System.out.print("========" + node.NodeName);
+//    }
+//
+//    public static void Print(Node node, boolean isFirst, String indent, int layer) {
 //        if (node.list.size() > 0) {
-//            Print(node.list.get(0), "--------");
+//            Print(node.list.get(0), true, indent + (isFirst ? "   " : "|  "), layer + 1);
 //        }
-//        System.out.print("\n");
+//        System.out.print(indent);
+//        System.out.print(isFirst ? "/" : "\\");
+//        System.out.print("->");
+//        System.out.println(node.NodeName);
+//        String space = "";
 //        if (node.list.size() > 1) {
+//            for (int j = 0; j <= layer; j++) {
+//                space += " ";
+//            }
 //            for (int i = 1; i < node.list.size(); i++) {
-//                Print(node.list.get(i), indent+"       \\");
+//                isFirst = false;
+//                Print(node.list.get(i), false, (isFirst ? space + "|  " : "  |" + space), layer + 1);
 //            }
 //        }
-        if (node.list.size() == 0) {
-            System.out.print(indent + node.NodeName + "\n");
-            return;
-        }
-        System.out.print(indent + node.NodeName + "-->");
-        if (node.list.size() > 0) {
-            for (int i = 0; i < node.list.size(); i++) {
-                Print(node.list.get(i), indent);
-            }
-        }
+//    }
 
-    }
-
+//    public static void Pri(Node root) {
+//        Print(root, "", true, 0);
+//    }
+//
+//    public static void Print(Node node, String indent, boolean isFirst, int layer) {
+//        if (node.list.size() == 0) {
+//            if (isFirst) {
+//                System.out.println(indent + node.NodeName);
+//                return;
+//            } else {
+//                String temp = "";
+//                for (int i = 0; i < layer - 1; i++) {
+//                    temp = temp + "|  ";
+//                }
+//                System.out.println(temp + indent + node.NodeName);
+//            }
+//        }
+//        if (node.list.get(0).list.size() == 0) {
+//            Print(node.list.get(0), node.NodeName + "->", true, layer + 1);
+//            String temp = "\\";
+//            for (int i = 0; i < node.NodeName.length() - 1; i++) {
+//                temp = temp + "-";
+//            }
+//            for (int i = 1; i < node.list.size(); i++) {
+//                Print(node.list.get(i), temp + "->", false, layer + 1);
+//            }
+//            return;
+//        }
+//        if (node.list.size() > 0) {
+//            Print(node.list.get(0), node.NodeName + "--", true, layer + 1);
+//            for (int i = 1; i < node.list.size(); i++) {
+//                Print(node.list.get(i), "\\--", false, layer + 1);
+//            }
+//        }
+//    }
 
     private static void treeLevelCount(Node node, int level) {
         System.out.printf("visit, node:%s, level:%d\n", node.NodeName, level);
@@ -93,7 +171,7 @@ public class PrintTree {
         }
         for (int i = 0; i < node.list.size(); i++) {
             Node son = node.list.get(i);
-            System.out.println(preStr + son.NodeName);//preStr + "-" + t.NodeName
+            System.out.println(preStr + "└" + node.NodeName);//preStr + "-" + t.NodeName
             if (!son.list.isEmpty()) {
                 displayTree(son, level + 1);
             }

@@ -1,6 +1,7 @@
 package com.lky.main;
 
 import com.lky.UI.PrintTree;
+import com.lky.inter.Node;
 import com.lky.lexer.Lexer;
 import com.lky.parser.Parser;
 import com.lky.token.Token;
@@ -76,12 +77,13 @@ public class Main {
                 "   endwh\n" +
                 "end.";
 
-        Lexer lex = new Lexer(sourses2);
+        Node temp = new Node("A", new Node("2", new Node("5", new Node("8"), new Node("9"), new Node("10")), new Node("6")), new Node("3"), new Node("4", new Node("7")));
+        Lexer lex = new Lexer(sourses);
         Parser parser = new Parser(lex);
         parser.Program();
-        //PrintTree.test(parser.root);
-        //System.out.println(parser.root.NodeName);
-        //PrintTree.displayTree(parser.root, 1);
-        PrintTree.Pri(parser.root);
+//        PrintTree.test(temp);
+        System.out.println(parser.root.NodeName);
+        PrintTree.displayTree(parser.root, 1);
+//        PrintTree.Pri(parser.root);
     }
 }

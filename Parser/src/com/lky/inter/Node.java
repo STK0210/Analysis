@@ -14,11 +14,12 @@ public class Node {
 
     public final String NodeName;
 
-    public final List<Node> list = new LinkedList<>();
+    public final List<Node> list;
 
     private int lexline = 0;//行号
 
     public Node(String nodeName, Node... nodes) {
+        list = new LinkedList<>();
         NodeName = nodeName;
         lexline = Lexer.line;
         for (int i = 0; i < nodes.length; i++) {
