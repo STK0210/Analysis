@@ -7,6 +7,7 @@ import com.lky.parser.Parser;
 import com.lky.token.Token;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @auther likeyu
@@ -35,7 +36,6 @@ public class Main {
                 "fi;\n" +
                 "q(v1)\n" +
                 "end.";
-
         String sourses2 = "program  bubble\n" +
                 "var  integer  i,j,num;\n" +
                 "     array [1..20] of integer  a;\n" +
@@ -76,14 +76,10 @@ public class Main {
                 "       i:=i+1\n" +
                 "   endwh\n" +
                 "end.";
-
-        Node temp = new Node("A", new Node("2", new Node("5", new Node("8"), new Node("9"), new Node("10")), new Node("6")), new Node("3"), new Node("4", new Node("7")));
         Lexer lex = new Lexer(sourses);
         Parser parser = new Parser(lex);
         parser.Program();
-//        PrintTree.test(temp);
-        System.out.println(parser.root.NodeName);
-        PrintTree.displayTree(parser.root, 1);
-//        PrintTree.Pri(parser.root);
+        PrintTree.printTree(parser.root, 1, 0);
+
     }
 }

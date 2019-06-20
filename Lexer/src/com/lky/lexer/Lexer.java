@@ -183,7 +183,6 @@ public class Lexer {
     }
 
     public List<Token> getTokens() throws IOException {
-
         List<Token> list = new LinkedList<>();
         Token token = scan();
         while (token.tag != 65535) {
